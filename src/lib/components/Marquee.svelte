@@ -1,0 +1,54 @@
+<script lang="ts">
+    export let text: string = "BREAKING NEWS • WELCOME TO THE PORTFOLIO • ";
+    export let speed: number = 20;
+    export let direction: "left" | "right" = "left";
+</script>
+
+<div
+    class="marquee-container"
+    style="--speed: {speed}s; --direction: {direction === 'left'
+        ? 'normal'
+        : 'reverse'}"
+>
+    <div class="track">
+        <div class="content">{text}</div>
+        <div class="content">{text}</div>
+        <div class="content">{text}</div>
+        <div class="content">{text}</div>
+    </div>
+</div>
+
+<style>
+    .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        border-top: 2px solid var(--border-color);
+        border-bottom: 2px solid var(--border-color);
+        padding: 0.5rem 0;
+        background: var(--bg-color);
+    }
+
+    .track {
+        display: flex;
+        animation: scroll var(--speed) linear infinite var(--direction);
+    }
+
+    .content {
+        font-family: var(--font-headline);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        padding-right: 2rem;
+        flex-shrink: 0;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+</style>
