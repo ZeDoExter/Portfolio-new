@@ -1,0 +1,7 @@
+organization=zedoexter
+projectKey=ZeDoExter_Portfolio-new
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.78972
+dashboardUrl=https://sonarcloud.io/dashboard?id=ZeDoExter_Portfolio-new
+ceTaskId=AZv-yFAn2uVHQGrrZp4X
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZv-yFAn2uVHQGrrZp4X

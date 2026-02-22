@@ -319,7 +319,7 @@
     @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Oswald:wght@500;700&display=swap");
 
     :global(body) {
-        background-color: #ffffff; /* Clean white for B/W theme */
+        background-color: var(--bg-color); /* Use global beige */
         color: #1a1a1a;
     }
 
@@ -330,7 +330,7 @@
         min-height: 100vh;
         display: flex;
         justify-content: center;
-        background: #ffffff;
+        background: var(--bg-color);
         border-left: 1px solid var(--border-color);
         border-right: 1px solid var(--border-color);
         overflow: hidden;
@@ -343,7 +343,7 @@
         max-width: 1280px; /* Constraint content inside 1440 wrapper */
         margin: 0 4rem; /* Space for floaters */
         padding: 3rem 0;
-        background: #ffffff;
+        background: var(--bg-color);
     }
 
     /* --- FLOATING ANIMATION --- */
@@ -469,8 +469,10 @@
     .sidebar-box-dark {
         background: #1a1a1a;
         color: #fff;
-        padding: 1.5rem;
+        padding: 1.25rem;
         transform: rotate(-1deg);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     .sidebar-box-dark h3 {
         font-family: "Oswald", sans-serif;
@@ -479,6 +481,11 @@
         margin: 0 0 1rem 0;
         border-bottom: 2px solid #fff;
         padding-bottom: 0.5rem;
+    }
+    .sidebar-box-dark p {
+        margin: 0;
+        line-height: 1.5;
+        font-size: 0.95rem;
     }
 
     .sidebar-stamp-date {
@@ -640,9 +647,11 @@
     .box-dark-b {
         background: #000;
         color: #fff;
-        padding: 1.5rem 1rem;
+        padding: 1.25rem 1rem;
         transform: rotate(-1deg);
         text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     .box-dark-b h3 {
         font-family: "Cinzel", serif;
@@ -650,6 +659,11 @@
         font-size: 1.1rem;
         border-bottom: 1px solid #fff;
         padding-bottom: 4px;
+    }
+    .box-dark-b p {
+        margin: 0;
+        line-height: 1.5;
+        font-size: 0.95rem;
     }
     .filler-b {
         font-size: 0.9rem;
@@ -786,17 +800,88 @@
     } /* Legacy class not used if moved */
 
     /* Markdown Helpers */
+    .article-text-a,
+    .article-flow-b {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+    .article-text-a :global(*),
+    .article-flow-b :global(*) {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
     .article-text-a :global(p),
     .article-flow-b :global(p) {
         margin-bottom: 1rem;
     }
+    .article-text-a :global(h1),
+    .article-flow-b :global(h1) {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        line-height: 1.1;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
     .article-text-a :global(h2),
     .article-flow-b :global(h2) {
         font-family: "Oswald", sans-serif;
-        font-size: 1.5rem;
-        margin-top: 1.5rem;
-        border-bottom: 1px solid #000;
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #000;
         display: inline-block;
+        text-transform: uppercase;
+    }
+    .article-text-a :global(h3),
+    .article-flow-b :global(h3) {
+        font-family: "Oswald", sans-serif;
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+        text-transform: uppercase;
+    }
+    .article-text-a :global(img),
+    .article-flow-b :global(img) {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #000;
+        margin: 1.5rem 0;
+    }
+    .article-text-a :global(pre),
+    .article-flow-b :global(pre) {
+        max-width: 100%;
+        overflow-x: auto;
+        background: #111;
+        color: #eee;
+        padding: 1rem;
+        word-wrap: normal;
+        word-break: normal;
+    }
+    .article-text-a :global(code),
+    .article-flow-b :global(code) {
+        font-family: monospace;
+        font-size: 0.9em;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 0.1rem 0.3rem;
+    }
+    .article-text-a :global(pre) :global(code),
+    .article-flow-b :global(pre) :global(code) {
+        background: transparent;
+        padding: 0;
+    }
+    .article-text-a :global(ul),
+    .article-flow-b :global(ul),
+    .article-text-a :global(ol),
+    .article-flow-b :global(ol) {
+        padding-left: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .article-text-a :global(li),
+    .article-flow-b :global(li) {
+        margin-bottom: 0.5rem;
     }
 
     /* RESPONSIVE */
