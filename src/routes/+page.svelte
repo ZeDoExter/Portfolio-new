@@ -1,6 +1,6 @@
 <script lang="ts">
     import "./page.css";
-    import { onMount, tick } from "svelte";
+    import { onMount, onDestroy, tick } from "svelte";
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
     import Marquee from "$lib/components/Marquee.svelte";
@@ -19,6 +19,7 @@
     };
 
     let gridItems: GridItem[] = [];
+    let ctx: gsap.Context;
 
     onMount(async () => {
         // Prepare items
@@ -50,25 +51,47 @@
 
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.from(mainTitle, {
-            y: 50,
-            opacity: 0,
-            duration: 1.5,
-            ease: "power4.out",
-        });
+        ctx = gsap.context(() => {
+            if (mainTitle) {
+                gsap.fromTo(
+                    mainTitle,
+                    {
+                        y: 50,
+                        opacity: 0,
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1.5,
+                        ease: "power4.out",
+                    },
+                );
+            }
 
-        gsap.utils.toArray(".grid-card").forEach((card: any) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 90%",
-                    toggleActions: "play none none reverse",
-                },
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
+            gsap.utils.toArray(".grid-card").forEach((card: any) => {
+                gsap.fromTo(
+                    card,
+                    {
+                        y: 30,
+                        opacity: 0,
+                    },
+                    {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 90%",
+                            toggleActions: "play none none reverse",
+                        },
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                    },
+                );
             });
         });
+    });
+
+    onDestroy(() => {
+        ctx?.revert();
     });
 </script>
 
@@ -77,12 +100,12 @@
     <header class="main-header hero-header">
         <div class="hero-top-bar">
             <div class="hero-side-text">
-                <p>PORTFOLIO</p>
+                <p>special</p>
                 <p>EDITION</p>
             </div>
             <div class="hero-title">About Me</div>
             <div class="hero-side-text">
-                <p>PORTFOLIO</p>
+                <p>special</p>
                 <p>EDITION</p>
             </div>
         </div>
@@ -123,14 +146,13 @@
         <section class="about-hero">
             <div class="hero-content">
                 <h2>About Me</h2>
-                <h3>FULL STACK DEVELOPER</h3>
+                <h3>COMPUTER SCIENCE STUDENT | YEAR 3</h3>
                 <p>
-                    Hello! I am a passionate web developer focused on creating
-                    immersive and highly optimized digital experiences. I
-                    specialize in building complex interactive platforms using
-                    SvelteKit, GSAP, and various other modern tools. Welcome to
-                    my creative archive where I showcase experiments, career
-                    milestones, and selected projects.
+                    I’m a third-year Computer Science student driven by
+                    curiosity and the desire to build something new. My
+                    interests are wide, but when something truly captures me, I
+                    dive deep — down to the architecture and core logic behind
+                    it. Welcome to my space, where imagination meets code.
                 </p>
                 <div class="hero-decorative-lines"></div>
             </div>
@@ -176,7 +198,11 @@
                             <div class="card-h-layout">
                                 <div class="card-h-img">
                                     {#if item.data.thumbnail}
-                                        <!-- img placeholder -->
+                                        <img
+                                            src={item.data.thumbnail}
+                                            alt="{item.data.title} Thumbnail"
+                                            style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(1.2);"
+                                        />
                                     {:else}
                                         <div class="placeholder-img">IMG</div>
                                     {/if}
@@ -200,7 +226,11 @@
                             <p class="card-desc">{item.data.description}</p>
                             <div class="card-v-img">
                                 {#if item.data.thumbnail}
-                                    <!-- img placeholder -->
+                                    <img
+                                        src={item.data.thumbnail}
+                                        alt="{item.data.title} Thumbnail"
+                                        style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(1.2);"
+                                    />
                                 {:else}
                                     <div class="placeholder-img">IMG</div>
                                 {/if}

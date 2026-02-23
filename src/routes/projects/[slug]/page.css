@@ -1,0 +1,847 @@
+/* 
+       GLOBAL & SHARED STYLES 
+       Theme: Black & White / Grayscale 
+    */
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Oswald:wght@500;700&display=swap");
+
+body {
+    background-color: var(--bg-color);
+    /* Use global beige */
+    color: #1a1a1a;
+}
+
+.page-wrapper {
+    position: relative;
+    max-width: 1440px;
+    /* Requested 1440px */
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: var(--bg-color);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.main-sheet {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1280px;
+    /* Constraint content inside 1440 wrapper */
+    margin: 0 4rem;
+    /* Space for floaters */
+    padding: 3rem 0;
+    background: var(--bg-color);
+}
+
+/* --- FLOATING ANIMATION --- */
+.floating-text-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    z-index: 10;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.8;
+    /* Increased opacity */
+}
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
+}
+
+.floater-track {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    animation: floatUp 30s linear infinite;
+}
+
+.floater-track.reverse {
+    animation-direction: reverse;
+}
+
+.float-word {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+    color: #000;
+    /* Black */
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+/* FOOTER COMMON */
+.footer-common {
+    margin-top: 4rem;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    font-size: 0.75rem;
+    border-top: 1px solid #000;
+    padding-top: 1rem;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+       LAYOUT A STYLES (Retro Grid)
+       ========================================= */
+.layout-a-container {
+    border: 2px solid #000;
+    padding: 2rem;
+}
+
+.header-a {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title-a {
+    font-family: "Playfair Display", serif;
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 0.9;
+}
+
+.subtitle-a {
+    font-family: "Old Standard TT", serif;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+}
+
+.double-line {
+    border-top: 4px solid #000;
+    border-bottom: 1px solid #000;
+    height: 6px;
+    margin-top: 1.5rem;
+}
+
+.grid-a {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+}
+
+.sidebar-a {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-right: 1px solid #000;
+    padding-right: 2rem;
+}
+
+/* Added border-right as requested for 'lines' perception if needed, or just relying on widgets */
+
+.back-link {
+    font-family: monospace;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    border: 1px solid #000;
+    padding: 0.5rem;
+    text-align: center;
+    display: block;
+    transition: all 0.2s;
+    margin-bottom: 1rem;
+}
+
+.back-link:hover {
+    background: #000;
+    color: #fff;
+}
+
+.sidebar-box-dark {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 1.25rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.sidebar-box-dark h3 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1.8rem;
+    line-height: 1;
+    margin: 0 0 1rem 0;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 0.5rem;
+}
+
+.sidebar-box-dark p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.sidebar-stamp-date {
+    border: 4px solid #000;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.d-day {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    font-family: "Playfair Display", serif;
+}
+
+.d-month {
+    font-family: monospace;
+    text-transform: uppercase;
+}
+
+.sidebar-stamp-retro {
+    border: 4px local;
+    border-style: double;
+    padding: 1rem;
+    text-align: center;
+    background: #f4f4f4;
+}
+
+.sidebar-stamp-retro h4 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* PROJECT SPECS WIDGET STYLE */
+.sidebar-text-widget h5 {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+    border-bottom: 1px solid #000;
+    /* Full width line */
+    padding-bottom: 2px;
+    text-transform: uppercase;
+}
+
+.hero-frame-a {
+    border: 1px solid #000;
+    padding: 5px;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.img-box-a {
+    background: #e5e5e5;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+}
+
+.x-mark {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top right,
+            transparent 49%,
+            rgba(0, 0, 0, 0.1) 50%,
+            transparent 51%),
+        linear-gradient(to top left,
+            transparent 49%,
+            rgba(0, 0, 0, 0.1) 50%,
+            transparent 51%);
+    pointer-events: none;
+}
+
+.headline-a {
+    font-family: "Oswald", sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-text-a {
+    font-family: "Old Standard TT", serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    column-count: 2;
+    column-gap: 2rem;
+    text-align: justify;
+}
+
+.lead-a {
+    font-size: 1.25rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+/* =========================================
+       LAYOUT B STYLES (Complex Magazine)
+       ========================================= */
+.layout-b-container {
+    /* No border wrapper, cleaner look */
+}
+
+.header-b {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title-b {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 5rem;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 0.9;
+    letter-spacing: -2px;
+}
+
+.subtitle-b {
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
+    margin: 0.5rem 0 1rem;
+    letter-spacing: 5px;
+    color: #444;
+}
+
+.line-thick {
+    height: 4px;
+    background: #000;
+    margin: 10px 0;
+}
+
+.line-thin {
+    height: 1px;
+    background: #000;
+    margin: 10px 0;
+}
+
+.header-note {
+    font-family: "Old Standard TT", serif;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.top-grid-b {
+    display: grid;
+    grid-template-columns: 200px 1fr 1.5fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* B1 */
+.col-b-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.box-dark-b {
+    background: #000;
+    color: #fff;
+    padding: 1.25rem 1rem;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.box-dark-b h3 {
+    font-family: "Cinzel", serif;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 4px;
+}
+
+.box-dark-b p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.filler-b {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: justify;
+    font-family: "Old Standard TT", serif;
+}
+
+.stamp-box-b {
+    border: 4px double #000;
+    padding: 1rem;
+    text-align: center;
+}
+
+.stamp-box-b h3 {
+    font-family: "Abril Fatface", cursive;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.stars {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    margin: 5px 0;
+    font-size: 0.8rem;
+}
+
+/* B2 */
+.col-b-mid {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 0 1rem;
+}
+
+.extra-head {
+    font-family: "Abril Fatface", cursive;
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1;
+}
+
+.extra-sub {
+    font-family: "Cinzel", serif;
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    margin: 0 0 1rem 0;
+}
+
+.mid-text {
+    font-family: "Old Standard TT", serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.quote-mid {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* B3 */
+.img-frame-b {
+    border: 4px solid #000;
+    padding: 3px;
+    height: 100%;
+    min-height: 350px;
+}
+
+.img-place-b {
+    width: 100%;
+    height: 100%;
+    background: #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Cinzel", serif;
+    font-weight: bold;
+}
+
+.banner-b {
+    border-top: 4px solid #000;
+    border-bottom: 4px solid #000;
+    padding: 1rem;
+    text-align: center;
+    margin: 2rem 0;
+    background: #fdfdfd;
+}
+
+.banner-b h2 {
+    font-family: "Abril Fatface", cursive;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.bottom-grid-b {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.widget-date-b {
+    background: #000;
+    color: #fff;
+    width: 120px;
+    height: 140px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Cinzel", serif;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 2px #000;
+}
+
+.wd-month {
+    font-size: 0.9rem;
+    border-bottom: 1px solid #fff;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.wd-day {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.article-flow-b {
+    font-family: "Old Standard TT", serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    column-count: 2;
+    column-gap: 3rem;
+    text-align: justify;
+    width: 100%;
+}
+
+.nav-b-bottom {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+/* Legacy class not used if moved */
+
+/* Markdown Helpers */
+.article-text-a,
+.article-flow-b {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.article-text-a *,
+.article-flow-b * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.article-text-a p,
+.article-flow-b p {
+    margin-bottom: 1rem;
+}
+
+.article-text-a h1,
+.article-flow-b h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-text-a h2,
+.article-flow-b h2 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #000;
+    display: inline-block;
+}
+
+.article-text-a h3,
+.article-flow-b h3 {
+    font-family: "Oswald", sans-serif;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.article-text-a img,
+.article-flow-b img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #000;
+    margin: 1.5rem 0;
+}
+
+.article-text-a pre,
+.article-flow-b pre {
+    max-width: 100%;
+    overflow-x: auto;
+    background: #111;
+    color: #eee;
+    padding: 1rem;
+    word-wrap: normal;
+    word-break: normal;
+}
+
+.article-text-a code,
+.article-flow-b code {
+    font-family: monospace;
+    font-size: 0.9em;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.1rem 0.3rem;
+}
+
+.article-text-a pre code,
+.article-flow-b pre code {
+    background: transparent;
+    padding: 0;
+}
+
+.article-text-a ul,
+.article-flow-b ul,
+.article-text-a ol,
+.article-flow-b ol {
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-text-a li,
+.article-flow-b li {
+    margin-bottom: 0.5rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .page-wrapper {
+        padding: 0 0.5rem;
+    }
+
+    .main-sheet {
+        margin: 1rem;
+        width: auto;
+        padding: 1rem;
+    }
+
+    /* A */
+    .title-a {
+        font-size: 3rem;
+    }
+
+    .grid-a {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-a {
+        order: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-right: none;
+        border-top: 1px solid #000;
+        padding-top: 2rem;
+        padding-right: 0;
+    }
+
+    /* Reset border for mobile */
+    .back-link {
+        grid-column: span 2;
+    }
+
+    .article-text-a {
+        column-count: 1;
+    }
+
+    /* B */
+    .title-b {
+        font-size: 3rem;
+    }
+
+    .top-grid-b {
+        grid-template-columns: 1fr;
+    }
+
+    .col-b-left {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .box-dark-b {
+        grid-column: span 2;
+    }
+
+    .col-b-mid {
+        border: none;
+        padding: 0;
+        border-top: 1px solid #ddd;
+        padding-top: 1rem;
+    }
+
+    .bottom-grid-b {
+        flex-direction: column;
+    }
+
+    .widget-date-b {
+        margin: 0 auto;
+    }
+
+    .article-flow-b {
+        column-count: 1;
+    }
+
+    .floating-text-container {
+        display: none;
+    }
+}
+
+.fig-caption {
+    font-family: "Old Standard TT", serif;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-style: italic;
+    text-transform: uppercase;
+    color: #444;
+}
+
+/* =========================================
+       LAYOUT C STYLES (3-Row Classic Newspaper)
+       ========================================= */
+.layout-c-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.row-c {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.row-c.top-row {
+    align-items: flex-start;
+}
+
+.row-c.mid-row {
+    align-items: center;
+}
+
+.c-half {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-text {
+    justify-content: center;
+}
+
+.title-c {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+}
+
+.title-c.sub {
+    font-size: 2.2rem;
+}
+
+.date-c {
+    font-family: "Oswald", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+.intro-c {
+    font-family: "Old Standard TT", serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.img-box-c {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Oswald", sans-serif;
+    color: #888;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+}
+
+.divider-c {
+    width: 100%;
+    height: 1px;
+    background: #000;
+    margin: 2rem 0;
+}
+
+.article-flow-c {
+    font-family: "Old Standard TT", serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    column-count: 3;
+    column-gap: 2.5rem;
+    text-align: justify;
+    width: 100%;
+}
+
+.article-flow-c * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.article-flow-c p {
+    margin-bottom: 1rem;
+}
+
+.article-flow-c h1,
+.article-flow-c h2,
+.article-flow-c h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    column-span: all;
+}
+
+.article-flow-c h1 {
+    font-size: 2.5rem;
+}
+
+.article-flow-c h2,
+.article-flow-c h3 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #000;
+    padding-bottom: 0.5rem;
+}
+
+/* Override responsive for C */
+@media (max-width: 900px) {
+    .layout-c-container .row-c {
+        flex-direction: column;
+    }
+
+    .layout-c-container .article-flow-c {
+        column-count: 1;
+    }
+}

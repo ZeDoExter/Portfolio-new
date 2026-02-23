@@ -9,6 +9,7 @@ export interface Project {
     thumbnail?: string;
     content: string;
     date: string;
+    layout?: "A" | "B" | "C";
 }
 
 export const getProjects = async (): Promise<Project[]> => {

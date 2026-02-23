@@ -45,7 +45,3 @@
 </script>
 
 <slot />
-
-<style>
-    /* Optional: specific styles for wrapper if needed */
-</style>
