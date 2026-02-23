@@ -5,6 +5,10 @@ layout: "A"
 date: "2024-04-01"
 tags: ["Java", "Algorithms", "Swing"]
 thumbnail: "/projects/graphwithgui/1.png"
+githubUrl: "https://github.com/ZeDoExter/GraphWithGui"
+jarUrl: "/projects/graphwithgui/GraphWithGui.jar"
+jarWidth: 900
+jarHeight: 700
 ---
 
 # Interactive Graph Algorithms

@@ -249,6 +249,9 @@
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card-tag {
@@ -411,4 +414,15 @@
     .card-h-img {
         min-height: 200px;
     }
+}
+
+.github-icon-link {
+    color: inherit;
+    line-height: 0;
+    transition: opacity 0.2s;
+}
+
+.github-icon-link:hover,
+.github-icon-link:focus {
+    opacity: 0.6;
 }

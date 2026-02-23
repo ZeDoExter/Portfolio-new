@@ -47,8 +47,17 @@
         </section>
     </div>
 
-    {#if project.slug === "GraphWithGui"}
-        <JavaSandbox />
+    {#if project.jarUrl}
+        <div
+            style="display: flex; justify-content: center; width: 100%; margin: 2rem 0;"
+        >
+            <JavaSandbox
+                jarPath={project.jarUrl}
+                width={project.jarWidth || 900}
+                height={project.jarHeight || 700}
+                scale={project.jarScale || 1}
+            />
+        </div>
     {/if}
 
     <footer class="footer-common">

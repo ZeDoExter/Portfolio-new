@@ -1,39 +1,48 @@
 ---
 title: "Two Cars"
-description: "A Java Swing application that visualizes graph algorithms like BFS, DFS, Dijkstra, Kruskal, and Prim interactively."
-layout: "A"
+description: "A Java-based 2D endless runner game where players control two cars simultaneously using simple lane-switch mechanics."
+layout: "B"
 date: "2024-02-18"
-tags: ["Java", "Algorithms", "Swing"]
+tags: ["Java", "Games", "Swing"]
 thumbnail: "/projects/twocars/1.png"
+# priority: 1
+githubUrl: "https://github.com/seaman0012/Twocars-project"
 ---
 
 # Two Cars
 
-**TwoCars** is a 2D racing game written in Java that provides a visual interface for constructing graphs and observing classic graph algorithms in action.
-
-## Key Features
-
-- **Algorithm Visualization**: Step-by-step or automatic execution of various graph algorithms.
-- **Supported Algorithms**:
-  - Breadth-First Search (BFS)
-  - Depth-First Search (DFS)
-  - Dijkstra's Shortest Path
-  - Kruskal's Minimum Spanning Tree
-  - Prim's Minimum Spanning Tree
-- **Interactive Graph Creation**: Add vertices and edges directly on the canvas to build custom networks.
-
-## Live Web App
-
-Thanks to the integration of **CheerpJ**, this Java Swing application is fully playable within the browser. The execution engine converts the Java bytecode into WebAssembly on the fly!
+**TwoCars** is a 2D endless runner game developed in Java. 
+The player must control two cars at the same time - one on the left and one on the right.
 
 ### Basic Usage
 
-The status message at the bottom of the window guides you through each step (such as selecting a start node or adding edges).
+The game contains 4 lanes in total, divided into 2 independent sides:
 
-**Left Click** on empty space - Create a vertex.
+- Left Side - 2 lanes (controlled by key A)
+- Right Side - 2 lanes (controlled by key D)
 
-**Left Click** on two vertices - Create an edge between them.
+A - Switch the left car between its two lanes only.
+     Press again - It switches back to its original lane.
+     (This does NOT affect the right car.)
 
-**Right Click** on a vertex or edge - Modify properties such as label or weight.
+D - Switch the right car between its two lanes only.
+     Press again - It switches back to its original lane.
+     (This does NOT affect the left car.)
 
-After building your graph, select an algorithm and follow the on-screen instructions to see the visualization in action.
+Each side operates independently.
+
+If either the left car or the right car collides with an obstacle,
+the game ends immediately.
+
+This is a single-player game that requires controlling both cars simultaneously.
+
+### SUMMARY
+
+This project was developed as a Final OOP course project,
+collaborating with a team of 3 members.
+
+**Note** The interactive version of this game is not available on this page because the fixed game screen resolution does not fit well within the website layout.
+
+### GitHub Repository
+
+https://github.com/seaman0012/Twocars-project

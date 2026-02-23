@@ -1,8 +1,17 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
+    export let jarPath: string = "/app/projects/graphwithgui/GraphWithGui.jar";
+    export let width: number = 900;
+    export let height: number = 700;
+    export let scale: number = 1;
+
     let isCheerpJLoaded = false;
     let isCheerpJRunning = false;
+
+    // Computed height for the wrapper so it doesn't leave huge empty space when scaled down
+    $: wrapperHeight = height * scale;
+    $: wrapperWidth = width * scale;
 
     onMount(() => {
         // Appending the loader.js
@@ -38,15 +47,19 @@
             const displayContainer = document.getElementById("cheerpj-display");
             if (displayContainer) {
                 // @ts-ignore
-                window.cheerpjCreateDisplay(900, 700, displayContainer);
+                window.cheerpjCreateDisplay(width, height, displayContainer);
             }
 
             // Mark as loaded immediately — Swing apps run indefinitely so the
             // promise from cheerpjRunJar never resolves.
             isCheerpJLoaded = true;
 
+            const finalJarPath = jarPath.startsWith("/app")
+                ? jarPath
+                : `/app${jarPath.startsWith("/") ? "" : "/"}${jarPath}`;
+
             // @ts-ignore
-            window.cheerpjRunJar("/app/projects/graphwithgui/GraphWithGui.jar");
+            window.cheerpjRunJar(finalJarPath);
         } catch (e) {
             console.error("Failed to run Java JAR:", e);
             isCheerpJLoaded = false;
@@ -57,7 +70,13 @@
 
 <div
     class="cheerpj-section"
-    style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 2rem; margin-bottom: 2rem; border: 2px dashed #000; padding: 2rem; text-align: center; font-family: monospace; background: #fdfdfd;"
+    style="width: {wrapperWidth}px; min-width: {wrapperWidth}px; height: {isCheerpJLoaded
+        ? wrapperHeight + 'px'
+        : 'auto'}; min-height: {isCheerpJLoaded
+        ? wrapperHeight + 'px'
+        : '100px'}; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem auto; border: 2px dashed #000; padding: {isCheerpJLoaded
+        ? '0'
+        : '2rem'}; text-align: center; font-family: monospace; background: #fdfdfd; box-sizing: content-box; overflow: hidden; position: relative;"
 >
     {#if !isCheerpJLoaded}
         <h3
@@ -73,21 +92,18 @@
         <button
             on:click={startJavaApp}
             disabled={isCheerpJRunning}
-            style="padding: 10px 20px; font-family: monospace; font-size: 1.1rem; font-weight: bold; background: #000; color: #fff; border: 2px solid #000; cursor: pointer; transition: all 0.2s;"
+            style="padding: 10px 20px; font-family: monospace; font-size: 1.1rem; font-weight: bold; background: #000; color: #fff; border: 2px solid #000; cursor: pointer; transition: all 0.2s; position: relative; z-index: 10;"
         >
             {isCheerpJRunning
                 ? "LOADING VIRTUAL MACHINE..."
                 : "▶ LAUNCH JAVA APPLICATION"}
         </button>
-    {:else}
-        <h3
-            style="margin-bottom: 0.5rem; font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: green;"
-        >
-            Application Running
-        </h3>
     {/if}
+
     <div
         id="cheerpj-display"
-        style="width: 100%; max-width: 920px; overflow-x: auto; margin-top: 1rem;"
+        style="width: {width}px; height: {height}px; transform: scale({scale}); transform-origin: top left; position: absolute; top: 0; left: 0; opacity: {isCheerpJLoaded
+            ? 1
+            : 0}; pointer-events: {isCheerpJLoaded ? 'auto' : 'none'};"
     ></div>
 </div>

@@ -10,6 +10,12 @@ export interface Project {
     content: string;
     date: string;
     layout?: "A" | "B" | "C";
+    jarUrl?: string;
+    jarWidth?: number;
+    githubUrl?: string;
+    jarHeight?: number;
+    jarScale?: number;
+    priority?: number;
 }
 
 export const getProjects = async (): Promise<Project[]> => {
@@ -30,5 +36,12 @@ export const getProjects = async (): Promise<Project[]> => {
         });
     }
 
-    return projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return projects.sort((a, b) => {
+        const pA = a.priority || 0;
+        const pB = b.priority || 0;
+        if (pB !== pA) {
+            return pB - pA;
+        }
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 };

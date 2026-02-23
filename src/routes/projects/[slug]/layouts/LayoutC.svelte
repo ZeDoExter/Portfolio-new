@@ -68,8 +68,13 @@
         {@html project.content}
     </div>
 
-    {#if project.slug === "GraphWithGui"}
-        <JavaSandbox />
+    {#if project.jarUrl}
+        <JavaSandbox
+            jarPath={project.jarUrl}
+            width={project.jarWidth || 900}
+            height={project.jarHeight || 700}
+            scale={project.jarScale || 1}
+        />
     {/if}
 
     <footer class="footer-common">
